@@ -1,9 +1,10 @@
 import { VStack, Flex, Input, Select, CheckboxGroup, HStack, Text, Button, Spacer, Heading, Checkbox } from '@chakra-ui/react';
 
 const BasicInformation = ({ formData, handleChange, handleBlur, handleSelectChange, handleCheckboxChange, nextStage, getBorderColor }) => (
-  <VStack spacing="4" marginTop={10}>
+  <VStack spacing="4" marginTop={10} >
     <Heading as="h2" size={['md', 'lg']} marginBottom={10}>Basic Information</Heading>
     <Input
+    borderRadius={['10','7']}
       size={['sm', 'md']}
       placeholder='Company Name'
       name='cname'
@@ -14,6 +15,7 @@ const BasicInformation = ({ formData, handleChange, handleBlur, handleSelectChan
     />
     <Flex flexDir={'row'} w={'100%'} gap={4} flexWrap={['wrap', 'nowrap']}>
       <Input
+      borderRadius={['10','7']}
         size={['sm', 'md']}
         placeholder="First Name"
         name="fname"
@@ -23,6 +25,7 @@ const BasicInformation = ({ formData, handleChange, handleBlur, handleSelectChan
         borderColor={getBorderColor('fname')}
       />
       <Input
+      borderRadius={['10','7']}
         size={['sm', 'md']}
         placeholder="Last Name"
         name="lname"
@@ -34,6 +37,7 @@ const BasicInformation = ({ formData, handleChange, handleBlur, handleSelectChan
     </Flex>
     <Flex flexDir={'row'} w={'100%'} gap={4} flexWrap={['wrap', 'nowrap']}>
       <Input
+      borderRadius={['10','7']}
         size={['sm', 'md']}
         placeholder="Email"
         type="email"
@@ -44,6 +48,7 @@ const BasicInformation = ({ formData, handleChange, handleBlur, handleSelectChan
         borderColor={getBorderColor('email')}
       />
       <Input
+      borderRadius={['10','7']}
         size={['sm', 'md']}
         placeholder="Mobile"
         type="number"
@@ -56,6 +61,7 @@ const BasicInformation = ({ formData, handleChange, handleBlur, handleSelectChan
     </Flex>
     <Flex flexDir={'row'} w={'100%'} gap={4}>
       <Select
+      borderRadius={['10','7']}
         placeholder='Company Type'
         name="ctype"
         value={formData.ctype}
