@@ -7,7 +7,7 @@ const Header = () => {
   const { colorMode, toggleColorMode } = useColorMode();
 
   return (
-    <header style={{ display: "flex", justifyContent: "space-between", alignItems: "center", width: '100%', gap: 200 }}>
+    <header style={{ display: "flex", justifyContent: "space-between", alignItems: "center", width: '100%' }}>
       <Image src={logo} alt='Lexship' h={[8, 41]} />
       <IconButton
         size={['sm', 'md']}
