@@ -1,10 +1,11 @@
-import  { useState } from 'react';
-import { Box, HStack, Text } from '@chakra-ui/react';
+import { useState } from 'react';
+import { Box, HStack, Text, useColorMode } from '@chakra-ui/react';
 import BasicInformation from './BasicInformation.jsx';
 import AdditionalInformation from './AdditionalInformation.jsx';
 
 const RegistrationForm = () => {
   const [stage, setStage] = useState(1);
+  const { colorMode } = useColorMode();
   const [formData, setFormData] = useState({
     fname: '',
     lname: '',
@@ -57,14 +58,13 @@ const RegistrationForm = () => {
       ctype: true
     });
   };
-
   const handleCheckboxChange = (accountType) => {
     setFormData({
       ...formData,
       accountType: accountType
     });
   };
-
+  
   const handleBillCheckboxChange = (e) => {
     const { name, checked } = e.target;
     if (name === 'sameAsCompany') {
@@ -113,10 +113,30 @@ const RegistrationForm = () => {
 
   return (
     <>
-      <Box w={[370, 1000]} margin="0 auto" padding="6" borderWidth="1px" borderRadius="lg" boxShadow="lg" mt={5}>
+      <Box w={['100%', '100%', '90%', '70%']} margin="0 auto" padding="6" borderWidth="1px" borderRadius="lg" boxShadow="lg" mt={5}>
         <HStack spacing="8" justify="center" marginBottom="6">
-          <Text fontWeight="bold" color={stage === 1 ? 'green' : 'gray.500'} fontSize={['md', 'lg']}> Basic Information</Text>
-          <Text fontWeight="bold" color={stage === 2 ? 'green' : 'gray.500'} fontSize={['md', 'lg']}>Additional Information</Text>
+          <Text
+            fontWeight="bold"
+            color={stage === 1 ? 'teal.400' : 'gray.500'}
+            fontSize={['sm', 'md']} 
+            onClick={() => setStage(1)}
+            cursor={'pointer'} 
+            bgColor={(stage === 1 && colorMode === 'dark') ? 'gray.700' : ((stage === 1 && colorMode === 'light') ? 'gray.100' : '')}
+            borderRadius={stage === 1 && 10}
+            padding={stage === 1 && 2}>
+            Basic Information
+          </Text>
+          <Text
+            fontWeight="bold"
+            color={stage === 2 ? 'teal.400' : 'gray.500'}
+            fontSize={['sm', 'md']}
+            onClick={() => setStage(2)}
+            cursor={'pointer'}
+            bgColor={(stage === 2 && colorMode === 'dark') ? 'gray.700' : ((stage === 2 && colorMode === 'light') ? 'gray.100' : '')}
+            borderRadius={stage === 2 && 10}
+            padding={stage === 2 && 2}>
+            Additional Information
+          </Text>
         </HStack>
 
         {stage === 1 && (
