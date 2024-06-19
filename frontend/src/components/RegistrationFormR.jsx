@@ -19,6 +19,7 @@ const RegistrationForm = () => {
     pincode: '',
     city: '',
     state: '',
+    aadharn:''
   });
   const [touched, setTouched] = useState({});
 
