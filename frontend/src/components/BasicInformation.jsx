@@ -77,14 +77,16 @@ const BasicInformation = ({ formData, handleChange, handleBlur, handleSelectChan
         <option value="Individual Trading">Individual Trading</option>
       </Select>
     </Flex>
-    <Flex flexDir='row' width='100%' alignContent='flex-start'>
+    <Flex flexDir='column' width='100%' alignContent='flex-start'>
       <CheckboxGroup colorScheme="green" onChange={handleCheckboxChange} value={formData.accountType} size={['sm', 'md']}>
         <HStack gap={5}>
           <Text fontSize={['sm', 'md']}>Account Type</Text>
           <Checkbox value="WSL">WSL</Checkbox>
         </HStack>
       </CheckboxGroup>
+      <Text fontSize={['xs']} textAlign={'start'} mt={2} color='gray.500'>Check WSL if you are a wholeseller</Text>
     </Flex>
+          
     <Flex width="100%">
       <Spacer />
       <Button colorScheme="teal" onClick={nextStage} size={['sm', 'md']}>Next</Button>
