@@ -1,19 +1,77 @@
-import { VStack, Flex, Input, Checkbox, HStack, Text, Button, Spacer, Heading, InputGroup, InputRightElement } from '@chakra-ui/react';
+import {
+    VStack,
+    Flex,
+    Input,
+    Checkbox,
+    HStack,
+    Text,
+    Button,
+    Spacer,
+    Heading,
+    InputGroup,
+    InputRightElement,
+    useToast,
+    Spinner
+} from '@chakra-ui/react';
 import { useState } from 'react';
-
-
 import { FaEye, FaEyeSlash } from "react-icons/fa6";
-const AdditionalInformationB = ({ formData, handleChange, handleBlur, handleBillCheckboxChange, prevStage, onsubmit, getBorderColor }) => {
-    const [showp, setShowp] = useState(false)
-    const handleClickP = () => setShowp(!showp)
 
-    const [showcp,setShowcp] = useState(false);
-    const handleClickCp = () => setShowcp(!showcp);
+const AdditionalInformationB = ({ formData, handleChange, handleBlur, handleBillCheckboxChange, prevStage, onsubmit, getBorderColor, setFormData }) => {
+    const [showPassword, setShowPassword] = useState(false);
+    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+    const [loading, setLoading] = useState({ company: false, billing: false });
+    const toast = useToast();
+
+    const handleShowPasswordToggle = () => setShowPassword(!showPassword);
+    const handleShowConfirmPasswordToggle = () => setShowConfirmPassword(!showConfirmPassword);
+
+    const fetchAddressDetails = async (pincode, type) => {
+        try {
+            setLoading(prev => ({ ...prev, [type]: true }));
+            const response = await fetch(`${import.meta.env.VITE_POSTAL_INFO_API}/${pincode}`);
+            const data = await response.json();
+            const updateState = (city, state, pincode) => {
+                setFormData(prevData => ({
+                    ...prevData,
+                    [`city${type === 'billing' ? '_b' : ''}`]: city,
+                    [`state${type === 'billing' ? '_b' : ''}`]: state,
+                    [`pincode${type === 'billing' ? '_b' : ''}`]: pincode
+                }));
+            };
+
+            if (data[0].Status === 'Success') {
+                const { PostOffice } = data[0];
+                updateState(PostOffice[0].District, PostOffice[0].State, pincode);
+            } else {
+                updateState('', '', '');
+                toast({
+                    title: "Invalid Pincode",
+                    description: "No records found for the entered pincode.",
+                    status: "error",
+                    duration: 3000,
+                    isClosable: true,
+                    position: 'top'
+                });
+            }
+        } catch (error) {
+            console.error('Error fetching address details:', error);
+        } finally {
+            setTimeout(() => setLoading(prev => ({ ...prev, [type]: false })), 100);
+        }
+    };
+
+    const handlePincodeChange = (e, type) => {
+        handleChange(e);
+        const { value } = e.target;
+        if (value.length === 6) {
+            fetchAddressDetails(value, type);
+        }
+    };
+
     return (
         <VStack spacing="4" marginTop={10}>
             <Heading as="h2" size={['md', 'lg']} marginBottom={10}>Additional Information</Heading>
             <Heading as='h4' size={['sm', 'md']}>Company Address</Heading>
-
             <Flex flexDir={'row'} w={'100%'} gap={4} flexWrap={['wrap', 'nowrap']}>
                 <Input
                     borderRadius={['10', '7']}
@@ -36,15 +94,16 @@ const AdditionalInformationB = ({ formData, handleChange, handleBlur, handleBill
                     borderColor={getBorderColor('addressl2')}
                 />
             </Flex>
-            <Flex flexDir={'row'} w={'100%'} gap={4} >
+            <Flex flexDir={'row'} w={'100%'} gap={4}>
                 <Input
                     borderRadius={['10', '7']}
                     size={['sm', 'md']}
                     placeholder="Pincode"
-                    type="number"
+                    type="text"
+                    maxLength={6}
                     name="pincode"
                     value={formData.pincode}
-                    onChange={handleChange}
+                    onChange={e => handlePincodeChange(e, 'company')}
                     onBlur={handleBlur}
                     borderColor={getBorderColor('pincode')}
                 />
@@ -57,6 +116,7 @@ const AdditionalInformationB = ({ formData, handleChange, handleBlur, handleBill
                     onChange={handleChange}
                     onBlur={handleBlur}
                     borderColor={getBorderColor('city')}
+                    isDisabled={loading.company}
                 />
             </Flex>
             <Flex flexDir={'row'} w={'100%'} gap={4}>
@@ -70,11 +130,14 @@ const AdditionalInformationB = ({ formData, handleChange, handleBlur, handleBill
                     onChange={handleChange}
                     onBlur={handleBlur}
                     borderColor={getBorderColor('state')}
+                    isDisabled={loading.company}
                 />
             </Flex>
+            {loading.company && <Spinner size={"lg"} mt={4} />}
+
             <Heading as='h4' size={['sm', 'md']} mt={6}>Billing Address</Heading>
             <HStack>
-                <Text fontSize={['sm','md']}>Same as Company</Text>
+                <Text fontSize={['sm', 'md']}>Same as Company</Text>
                 <Checkbox name="sameAsCompany" onChange={handleBillCheckboxChange} value='checkbox' size={['sm', 'md']} />
             </HStack>
 
@@ -100,15 +163,16 @@ const AdditionalInformationB = ({ formData, handleChange, handleBlur, handleBill
                     borderColor={getBorderColor('addressl2_b')}
                 />
             </Flex>
-            <Flex flexDir={'row'} w={'100%'} gap={4} >
+            <Flex flexDir={'row'} w={'100%'} gap={4}>
                 <Input
                     borderRadius={['10', '7']}
                     size={['sm', 'md']}
                     placeholder="Pincode"
-                    type="number"
+                    type="text"
+                    maxLength={6}
                     name="pincode_b"
                     value={formData.pincode_b}
-                    onChange={handleChange}
+                    onChange={e => handlePincodeChange(e, 'billing')}
                     onBlur={handleBlur}
                     borderColor={getBorderColor('pincode_b')}
                 />
@@ -121,6 +185,7 @@ const AdditionalInformationB = ({ formData, handleChange, handleBlur, handleBill
                     onChange={handleChange}
                     onBlur={handleBlur}
                     borderColor={getBorderColor('city_b')}
+                    isDisabled={loading.billing}
                 />
             </Flex>
             <Flex flexDir={'row'} w={'100%'} gap={4}>
@@ -134,8 +199,11 @@ const AdditionalInformationB = ({ formData, handleChange, handleBlur, handleBill
                     onChange={handleChange}
                     onBlur={handleBlur}
                     borderColor={getBorderColor('state_b')}
+                    isDisabled={loading.billing}
                 />
             </Flex>
+            {loading.billing && <Spinner size='lg' mt={4} />}
+
             <Heading as='h4' size={['sm', 'md']} mt={6}>Credentials</Heading>
             <Input
                 borderRadius={['10', '7']}
@@ -147,25 +215,21 @@ const AdditionalInformationB = ({ formData, handleChange, handleBlur, handleBill
                 onBlur={handleBlur}
                 borderColor={getBorderColor('uname')}
             />
-            <Flex flexDir={'row'} w={'100%'} gap={4} flexWrap={['wrap','nowrap']}>
-
+            <Flex flexDir={'row'} w={'100%'} gap={4} flexWrap={['wrap', 'nowrap']}>
                 <InputGroup size={['sm', 'md']}>
                     <Input
                         borderRadius={['10', '7']}
-                        
                         placeholder='Password'
                         name='password'
-                        type={showp ? 'text' : 'password'}
+                        type={showPassword ? 'text' : 'password'}
                         value={formData.password}
                         onChange={handleChange}
                         onBlur={handleBlur}
                         borderColor={getBorderColor('password')}
                     />
-                    <InputRightElement >
-                        <Button
-                            size={['0.5rem', '0.75rem']}
-                            onClick={handleClickP}>
-                            {!showp ? (<FaEyeSlash />) : (<FaEye />)}
+                    <InputRightElement>
+                        <Button size={['0.5rem', '0.75rem']} onClick={handleShowPasswordToggle}>
+                            {showPassword ? <FaEye /> : <FaEyeSlash />}
                         </Button>
                     </InputRightElement>
                 </InputGroup>
@@ -173,25 +237,20 @@ const AdditionalInformationB = ({ formData, handleChange, handleBlur, handleBill
                 <InputGroup size={['sm', 'md']}>
                     <Input
                         borderRadius={['10', '7']}
-                        
                         placeholder='Re-enter Password'
                         name='cpassword'
-                        type={showcp ? 'text' : 'password'}
+                        type={showConfirmPassword ? 'text' : 'password'}
                         value={formData.cpassword}
                         onChange={handleChange}
                         onBlur={handleBlur}
                         borderColor={getBorderColor('cpassword')}
                     />
-                    <InputRightElement >
-                        <Button
-                            size={['0.5rem', '0.75rem']}
-                            onClick={handleClickCp}>
-                            {
-                            !showcp ? (<FaEyeSlash />) : (<FaEye />)}
+                    <InputRightElement>
+                        <Button size={['0.5rem', '0.75rem']} onClick={handleShowConfirmPasswordToggle}>
+                            {showConfirmPassword ? <FaEye /> : <FaEyeSlash />}
                         </Button>
                     </InputRightElement>
                 </InputGroup>
-                
             </Flex>
 
             <Flex width="100%" mt={4}>
@@ -200,7 +259,7 @@ const AdditionalInformationB = ({ formData, handleChange, handleBlur, handleBill
                 <Button colorScheme="teal" onClick={onsubmit} size={['sm', 'md']}>Submit</Button>
             </Flex>
         </VStack>
-    )
+    );
 };
 
 export default AdditionalInformationB;

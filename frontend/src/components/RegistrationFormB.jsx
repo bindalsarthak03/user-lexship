@@ -160,6 +160,7 @@ const RegistrationFormB = () => {
             prevStage={prevStage}
             onsubmit={onsubmit}
             getBorderColor={getBorderColor}
+            setFormData={setFormData}
           />
         )}
       </Box>
