@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { Suspense, lazy, useState } from 'react';
 import { Box, HStack, Text, useColorMode } from '@chakra-ui/react';
-import BasicInformationB from './BasicInformationB.jsx';
-import AdditionalInformationB from './AdditionalInformationB.jsx';
+const BasicInformationB = lazy(()=> import('./BasicInformationB.jsx'))
+const AdditionalInformationB = lazy(()=> import('./AdditionalInformationB.jsx'))
+import Spinner from './Spinner.jsx';
 
 const RegistrationFormB = () => {
   const [stage, setStage] = useState(1);
@@ -13,7 +14,7 @@ const RegistrationFormB = () => {
     mobile: '',
     cname: '',
     uname: '',
-    gstin:'',
+    gstin: '',
     ctype: '',
     password: '',
     cpassword: '',
@@ -65,7 +66,7 @@ const RegistrationFormB = () => {
       accountType: accountType
     });
   };
-  
+
   const handleBillCheckboxChange = (e) => {
     const { name, checked } = e.target;
     if (name === 'sameAsCompany') {
@@ -113,15 +114,15 @@ const RegistrationFormB = () => {
   };
 
   return (
-    <>
+    <Suspense fallback={<Spinner />}>
       <Box w={['100%', '100%', '90%', '70%']} margin="0 auto" padding="6" borderWidth="1px" borderRadius="lg" boxShadow="lg" mt={5}>
         <HStack spacing="8" justify="center" marginBottom="6">
           <Text
             fontWeight="bold"
             color={stage === 1 ? 'teal.400' : 'gray.500'}
-            fontSize={['sm', 'md']} 
+            fontSize={['sm', 'md']}
             onClick={() => setStage(1)}
-            cursor={'pointer'} 
+            cursor={'pointer'}
             bgColor={(stage === 1 && colorMode === 'dark') ? 'gray.700' : ((stage === 1 && colorMode === 'light') ? 'gray.100' : '')}
             borderRadius={stage === 1 && 10}
             padding={stage === 1 && 2}>
@@ -164,7 +165,7 @@ const RegistrationFormB = () => {
           />
         )}
       </Box>
-    </>
+    </Suspense>
   );
 };
 

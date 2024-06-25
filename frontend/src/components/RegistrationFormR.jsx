@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { Suspense, lazy, useState } from 'react';
 import { Box, HStack, Text, useColorMode } from '@chakra-ui/react';
-import BasicInformationR from './BasicInformationR.jsx';
-import AdditionalInformationR from './AdditionalInformationR.jsx';
+import Spinner from './Spinner.jsx';
+const BasicInformationR = lazy(()=> import('./BasicInformationR.jsx'))
+const AdditionalInformationR = lazy(()=> import('./AdditionalInformationR.jsx'))
 
 const RegistrationForm = () => {
   const [stage, setStage] = useState(1);
@@ -57,8 +58,8 @@ const RegistrationForm = () => {
   };
 
   return (
-    <>
-      <Box w={['100%', '100%', '90%', '70%']} margin="0 auto" padding="6" borderWidth="1px" borderRadius="lg" boxShadow="lg" mt={5}>
+    <Suspense fallback={<Spinner/>}>
+      <Box w={['100%', '100%', '90%', '70%']} margin="0 auto" padding="6" borderWidth="1px" borderRadius="lg" boxShadow="lg" mt={5} >
         <HStack spacing="8" justify="center" marginBottom="6">
           <Text
             fontWeight="bold"
@@ -105,7 +106,7 @@ const RegistrationForm = () => {
           />
         )}
       </Box>
-    </>
+    </Suspense>
   );
 };
 
