@@ -100,8 +100,9 @@ const KycBusiness = () => {
                     <Heading as="h4" size={['sm', 'md']} mb={5}>Essential Documents</Heading>
                     <Flex flexDir={'row'} w={'100%'} gap={4} flexWrap={['wrap', 'wrap', 'wrap', 'nowrap']}>
                         <InputGroup>
-                            <InputLeftAddon p={0}>
+                            <InputLeftAddon p={0} >
                                 <Select w={'100%'}
+                                borderRightRadius={0}
                                     placeholder='ID Proof Type'
                                     name="idProof"
                                     value={kycData.idProof}
@@ -130,6 +131,7 @@ const KycBusiness = () => {
                         <InputGroup>
                             <InputLeftAddon p={0}>
                                 <Select w={'100%'}
+                                borderRightRadius={0}
                                     placeholder='Address Proof'
                                     name="addressProof"
                                     value={kycData.addressProof}
