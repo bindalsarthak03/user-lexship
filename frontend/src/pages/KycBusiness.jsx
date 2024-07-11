@@ -100,9 +100,10 @@ const KycBusiness = () => {
                     <Heading as="h4" size={['sm', 'md']} mb={5}>Essential Documents</Heading>
                     <Flex flexDir={'row'} w={'100%'} gap={4} flexWrap={['wrap', 'wrap', 'wrap', 'nowrap']}>
                         <InputGroup>
-                            <InputLeftAddon p={0} >
+                            <InputLeftAddon p={0} borderLeftRadius={['10',7]}>
                                 <Select w={'100%'}
                                 borderRightRadius={0}
+                                borderLeftRadius={['10','7']}
                                     placeholder='ID Proof Type'
                                     name="idProof"
                                     value={kycData.idProof}
@@ -119,6 +120,7 @@ const KycBusiness = () => {
                             </InputLeftAddon>
                             < Input
                                 borderRightRadius={['10', '7']}
+
                                 p={1}
                                 size={['md']}
                                 name="idFile"
@@ -129,9 +131,10 @@ const KycBusiness = () => {
                             />
                         </InputGroup>
                         <InputGroup>
-                            <InputLeftAddon p={0}>
+                            <InputLeftAddon p={0} borderLeftRadius={['10','7']}>
                                 <Select w={'100%'}
                                 borderRightRadius={0}
+                                borderLeftRadius={['10',7]}
                                     placeholder='Address Proof'
                                     name="addressProof"
                                     value={kycData.addressProof}
@@ -167,6 +170,7 @@ const KycBusiness = () => {
 
                         <Input
                             w={['100%', '100%', '100%', '97%']}
+                            borderLeftRadius={['10',7]}
                             size={['md']}
                             placeholder="IEC Code"
                             name="iecCode"
@@ -176,7 +180,7 @@ const KycBusiness = () => {
                             borderColor={getBorderColor('iecCode')}
                         />
                         <InputGroup>
-                            <InputLeftAddon w={['50%', '50%', '50%', '50%', '25%']}>
+                            <InputLeftAddon w={['50%', '50%', '50%', '50%', '25%']} borderLeftRadius={['10',7]}>
                                 <Text>IEC Certificate</Text>
                             </InputLeftAddon>
                             <Input
@@ -205,7 +209,7 @@ const KycBusiness = () => {
                             borderColor={getBorderColor('adCode')}
                         />
                         <InputGroup>
-                            <InputLeftAddon w={['50%', '50%', '50%', '50%', '25%']} >
+                            <InputLeftAddon w={['50%', '50%', '50%', '50%', '25%']} borderLeftRadius={['10',7]}>
                                 <Text >AdCode certificate</Text>
                             </InputLeftAddon>
                             <Input
@@ -220,7 +224,7 @@ const KycBusiness = () => {
                             />
                         </InputGroup>
                     </Flex>
-                    <Flex flexDir={'row'} w={'100%'} gap={4} flexWrap={['wrap', 'wrap', 'wrap', 'nowrap']}>
+                    <Flex flexDir={'row'} w={'100%'} gap={4} flexWrap={['wrap', 'wrap', 'wrap', 'nowrap']} borderLeftRadius={['10',7]}>
                         <InputGroup>
                             <InputLeftAddon w={['50%', '50%', '50%', '50%', '25%']}>
                                 <Text >LUT Expiry Date</Text>
@@ -237,7 +241,7 @@ const KycBusiness = () => {
                             />
                         </InputGroup>
                         <InputGroup>
-                            <InputLeftAddon w={['50%', '50%', '50%', '50%', '25%']}>
+                            <InputLeftAddon w={['50%', '50%', '50%', '50%', '25%']} borderLeftRadius={['10',7]}>
                                 <Text >LUT Certificate</Text>
                             </InputLeftAddon>
                             <Input
@@ -256,6 +260,7 @@ const KycBusiness = () => {
                     <Heading as="h4" size={['sm', 'md']} mt={5} mb={3}>Bank Details</Heading>
                     <Flex flexDir={'row'} w={'100%'} gap={4} flexWrap={['wrap', 'wrap', 'wrap', 'nowrap']}>
                         <Select w={'100%'}
+                        borderRadius={['10',7]}
                             placeholder='Account Type'
                             name="accType"
                             value={kycData.accType}
@@ -267,6 +272,7 @@ const KycBusiness = () => {
                             <option value="current">Current</option>
                         </Select>
                         <Select w={'100%'}
+                        borderRadius={['10',7]}
                             placeholder='Bank Type'
                             name="bankType"
                             value={kycData.bankType}
