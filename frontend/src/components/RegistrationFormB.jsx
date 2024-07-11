@@ -98,7 +98,13 @@ const RegistrationFormB = () => {
     }
   };
 
-  const onsubmit = () => { console.log(formData); }
+  const onsubmit = () => { 
+    //lead generation done
+    console.log(formData);
+
+    //redirect to kyc form 
+    window.location.href = '/kyc-verification';
+  }
   const nextStage = () => setStage((prev) => prev + 1);
   const prevStage = () => setStage((prev) => prev - 1);
 
