@@ -7,3 +7,16 @@
     --rmsc-bg: #1A202C;
     color: #fff;
 }
+
+.rmsc *{
+    transition: none !important;
+}
+
+.rmsc.dark .dropdown-content {
+    box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;    
+    .options :hover{
+        color: black;
+        transition: 0;
+        background-color: rgb(99,179,237);
+    }
+}
