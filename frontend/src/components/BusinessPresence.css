@@ -1,0 +1,9 @@
+.rmsc.dark {
+    --rmsc-main: rgb(99, 179, 237);
+    --rmsc-hover: #1a202c;
+    --rmsc-selected: #1a202c;
+    --rmsc-border: #4A5568;
+    --rmsc-gray: rgb(187, 187, 187);
+    --rmsc-bg: #1A202C;
+    color: #fff;
+}
