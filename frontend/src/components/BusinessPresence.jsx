@@ -12,9 +12,9 @@ import './BusinessPresence.css'
 const BusinessPresence = ({ prevStage, handleSubmit, selectedMarketplaces, selectedCategories, setSelectedCategories, setSelectedMarketplaces }) => {
 
     const marketplaceOptions = [
-        { value: 'amazon', label: 'Amazon' },
-        { value: 'aliexpress', label: 'AliExpress' },
-        { value: 'ebay', label: 'Ebay' },
+        { label: 'Amazon', value: 'amazon' },
+        { label: 'Aliexpress', value: 'aliExpress' },
+        { label: 'Ebay', value: 'ebay' },
     ];
 
     const categoryOptions = [
@@ -43,7 +43,7 @@ const BusinessPresence = ({ prevStage, handleSubmit, selectedMarketplaces, selec
 
     const handleNewField = (value) => ({
         label: value,
-        value: value.toUpperCase(),
+        value: value,
     });
 
     return (
@@ -71,6 +71,7 @@ const BusinessPresence = ({ prevStage, handleSubmit, selectedMarketplaces, selec
                     onChange={setSelectedCategories}
                     labelledBy={"Select"}
                     isCreatable={true}
+                    onCreateOption={handleNewField}
                     overrideStrings={{ selectSomeItems: "Select Categories" }}
                 />
             </Box>
