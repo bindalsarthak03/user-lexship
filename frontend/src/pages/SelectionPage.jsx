@@ -33,7 +33,7 @@ const SelectionPage = () => {
             {/* <Divider ml={20} mr={20} h={'1px'} bg={'gray.500'} /> */}
             <Box w={'95%'} position={'relative'}>
                 <Divider mr={20} h={'1px'} bg={'gray.600'} />
-                <AbsoluteCenter bg={'gray.800'} px='4' >
+                <AbsoluteCenter bg={colorMode==='dark' ?'gray.800' : 'white'} px='4' >
                    OR
                 </AbsoluteCenter>
 
