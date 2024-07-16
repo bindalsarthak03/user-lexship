@@ -7,6 +7,7 @@ import KycBusiness from './pages/KycBusiness';
 import HomePage from './pages/HomePage';
 import ContactUs from './pages/ContactUs';
 import AboutUs from './pages/AboutUs';
+import Login from './pages/Login';
 const SelectionPage = lazy(() => import('./pages/SelectionPage'));
 const RegisterBusiness = lazy(() => import('./pages/RegisterBusiness'));
 const RegisterRetail = lazy(() => import('./pages/RegisterRetail'));
@@ -26,7 +27,7 @@ function App() {
             <Route path='/kyc-verification' element={<KycBusiness/>}/>
             <Route path='/contact-us' element={<ContactUs/>}/>
             <Route path='/about-us' element={<AboutUs/>}/>
-
+            <Route path='/login' element={<Login/>}/>
           </Routes>
         </Suspense>
       </BrowserRouter>
