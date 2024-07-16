@@ -41,7 +41,7 @@ const ComingSoon = () => {
   }
 
   return (
-    <Box bg="gray.800" color="white" minHeight="80vh" display="flex" flexDirection="column" justifyContent="center" alignItems="center">
+    <Box  minHeight="80vh" display="flex" flexDirection="column" justifyContent="center" alignItems="center">
       <Container maxW="container.md" textAlign="center">
         <VStack spacing={8}>
           <Heading as="h1" size="2xl">
