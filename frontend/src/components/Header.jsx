@@ -20,6 +20,7 @@ import { FiSun, FiMoon, FiMenu, FiInstagram } from 'react-icons/fi';
 import { RiFacebookCircleFill, RiTwitterXFill } from 'react-icons/ri'
 import { SiLinkedin } from 'react-icons/si'
 import logo from '../assets/lexship.png';
+import { FaWhatsapp } from 'react-icons/fa6';
 
 const Header = () => {
   const { colorMode, toggleColorMode } = useColorMode();
@@ -36,6 +37,7 @@ const Header = () => {
         <Link href="/">
           <Image src={logo} alt="Lexship" h={[10, 50]} />
         </Link>
+
       </span>
       <Flex
         display={{ base: 'none', md: 'flex' }}
@@ -53,17 +55,22 @@ const Header = () => {
         <Link _hover={{ textDecoration: 'underline', color: 'teal.400' }} href="/selection-type">
           SignUp/SignIn
         </Link>
-        <IconButton
-          size={['sm', 'md']}
-          aria-label={`Toggle ${colorMode === 'light' ? 'Dark' : 'Light'} Mode`}
-          icon={colorMode === 'light' ? <Icon as={FiMoon} /> : <Icon as={FiSun} />}
-          onClick={toggleColorMode}
-        />
+        <Flex flexDir={'row'} gap={2}>
+          <a href='https://wa.me/8448444097' target="_blank" rel="noopener noreferrer">
+            <IconButton icon={<Icon as={FaWhatsapp} />} />
+          </a>
+          <IconButton
+            size={['sm', 'md']}
+            aria-label={`Toggle ${colorMode === 'light' ? 'Dark' : 'Light'} Mode`}
+            icon={colorMode === 'light' ? <Icon as={FiMoon} /> : <Icon as={FiSun} />}
+            onClick={toggleColorMode}
+          />
+        </Flex>
       </Flex>
-      
-      <Flex gap={2} display={{base:'flex',md:"none"}} flexDir={'row'}>
+
+      <Flex gap={2} display={{ base: 'flex', md: "none" }} flexDir={'row'}>
         <IconButton
-        display={{base:'flex',md:"none"}}
+          display={{ base: 'flex', md: "none" }}
           size={['md', 'md']}
           aria-label={`Toggle ${colorMode === 'light' ? 'Dark' : 'Light'} Mode`}
           icon={colorMode === 'light' ? <Icon as={FiMoon} /> : <Icon as={FiSun} />}
@@ -88,7 +95,9 @@ const Header = () => {
         <DrawerOverlay>
           <DrawerContent >
             <DrawerCloseButton />
-            <DrawerHeader borderBottomWidth='1px'>Menu</DrawerHeader>
+            <DrawerHeader borderBottomWidth='1px'>
+              Menu
+            </DrawerHeader>
             <DrawerBody >
               <VStack align="flex-start" gap={10} mt={5}>
                 <Link _hover={{ textDecoration: 'underline', color: 'teal.400' }} href="/contact-us">
@@ -103,7 +112,7 @@ const Header = () => {
               </VStack>
             </DrawerBody>
             <DrawerFooter gap={5} placeContent={'flex-start'} mb={2}>
-              <Link  href='https://www.linkedin.com/company/logilink-india/' >
+              <Link href='https://www.linkedin.com/company/logilink-india/' >
                 <SiLinkedin fontSize={'20px'} />
               </Link>
               <Link href='https://x.com/lexvyu'>
@@ -115,6 +124,9 @@ const Header = () => {
               <Link href='https://www.facebook.com/lexshipdotcom/'>
                 <RiFacebookCircleFill fontSize={'20px'} />
               </Link>
+              <a href='https://wa.me/8448444097' target="_blank" rel="noopener noreferrer">
+                <FaWhatsapp fontSize={'20px'}/>
+              </a>
             </DrawerFooter>
           </DrawerContent>
         </DrawerOverlay>
