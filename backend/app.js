@@ -9,8 +9,7 @@ app.use(cors());
 app.use(express.json());
 
 const port = 5000;
-
-app.use('/api/v1',router)
+app.use(router)
 
 app.listen(port,()=>{
     console.log(`App running on ${port}`)
