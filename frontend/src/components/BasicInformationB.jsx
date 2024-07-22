@@ -6,14 +6,13 @@ const BasicInformationB = ({ formData, handleChange, handleBlur, handleSelectCha
   const [gstError, setGstError] = useState('');
   const [isErrorVisible, setIsErrorVisible] = useState(false);
   const [isLoading, setIsLoading] = useState(false); // State to manage loading
-
-  // Function to fetch GST details
+  const url = import.meta.env.VITE_ENV ==='local' ? import.meta.env.VITE_LOCAL_BACKEND : import.meta.env.VITE_DEV_BACKEND  // Function to fetch GST details
   const fetchAddressGST = async (gstn) => {
     try {
       setGstError('');
       setIsErrorVisible(false);
       setIsLoading(true); // Start loading
-      const response = await fetch(`http://localhost:5000/api/v1/${gstn}`);
+      const response = await fetch(`${url}/api/v1/${gstn}`);
 
       if (response.status === 404) {
         setGstError('Invalid GSTIN');
