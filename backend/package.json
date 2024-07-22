@@ -9,7 +9,7 @@
   "name": "backend",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js"
+    "start": "nodemon app.js"
   },
   "version": "1.0.0",
   "devDependencies": {},

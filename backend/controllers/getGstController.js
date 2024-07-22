@@ -23,6 +23,7 @@ exports.getGstController = async (req, res) => {
         console.log(data);
 
         const cleanedData = {
+            legalNameOfBusiness : data.legalNameOfBusiness,
             principalPlaceOfBusinessFields: {
                 principalPlaceOfBusinessAddress: {
                     buildingName: data.principalPlaceOfBusinessFields.principalPlaceOfBusinessAddress.buildingName,
@@ -35,8 +36,8 @@ exports.getGstController = async (req, res) => {
                 }
             }
         };
-        console.log(cleanedData)
 
+        console.log("cleaned data: ",cleanedData)
         res.status(200).send(cleanedData);
     } catch (error) {
         if (error.response) {
