@@ -1,23 +1,55 @@
-import { VStack, Flex, Input, Select, CheckboxGroup, HStack, Text, Button, Spacer, Heading, Checkbox } from '@chakra-ui/react';
+import { VStack, Flex, Input, Select, CheckboxGroup, HStack, Text, Button, Spacer, Heading, Checkbox, FormControl, FormErrorMessage } from '@chakra-ui/react';
+import { useState } from 'react';
 
-const BasicInformationB = ({ formData, handleChange, handleBlur, handleSelectChange, handleCheckboxChange, nextStage, getBorderColor }) => {
-  const fetchAddressGST = async(gstn) => {
-    const response = await fetch(`${import.meta.env.VITE_GST_API}/${gstn}`,{
-      method: 'GET',
-      headers: {
-        'Accept': 'application/json',
-        'X-APISETU-CLIENTID': `${import.meta.env.VITE_CLIENTID}`,
-        'X-APISETU-APIKEY': `${import.meta.env.VITE_APIKEY_APISETU}`
+const BasicInformationB = ({ formData, handleChange, handleBlur, handleSelectChange, handleCheckboxChange, nextStage, getBorderColor, setFormData }) => {
+  const [gstError, setGstError] = useState('');
+
+  const fetchAddressGST = async (gstn) => {
+    try {
+      setGstError('');
+      const response = await fetch(`http://localhost:5000/api/v1/${gstn}`);
+      
+      if (response.status === 404) {
+        setGstError('Invalid GSTIN');
+        return;
       }
-    })
-    const data = await response.json();
-    console.log(data);
-  }
+      else {
+        setGstError('');  // Clear any previous error
+
+        const data = await response.json();
+
+        const address1 = data?.principalPlaceOfBusinessFields?.principalPlaceOfBusinessAddress?.buildingName
+          ? data.principalPlaceOfBusinessFields.principalPlaceOfBusinessAddress.buildingName + " " + (data.principalPlaceOfBusinessFields.principalPlaceOfBusinessAddress.buildingNumber || "")
+          : "";
+        const address2 = data?.principalPlaceOfBusinessFields?.principalPlaceOfBusinessAddress?.streetName
+          ? data.principalPlaceOfBusinessFields.principalPlaceOfBusinessAddress.streetName + " " + (data.principalPlaceOfBusinessFields.principalPlaceOfBusinessAddress.location || "")
+          : "";
+        const city = data?.principalPlaceOfBusinessFields?.principalPlaceOfBusinessAddress?.districtName || "";
+        const state = data?.principalPlaceOfBusinessFields?.principalPlaceOfBusinessAddress?.stateName || "";
+        const pincode = data?.principalPlaceOfBusinessFields?.principalPlaceOfBusinessAddress?.pincode || "";
+
+        setFormData(prevData => ({
+          ...prevData,
+          addressl1: address1,
+          addressl2: address2,
+          city: city,
+          state: state,
+          pincode: pincode
+        }));
+      }
+
+    } catch (error) {
+      setGstError('Invalid GSTIN');
+    }
+  };
+
   const handleGSTChange = (e) => {
     handleChange(e);
-    const {value} = e.target;
-    fetchAddressGST(value);
-  }
+    const { value } = e.target;
+    if (value.length === 15) {
+      fetchAddressGST(value);
+    }
+  };
 
   return (
     <VStack spacing="4" marginTop={10} >
@@ -34,16 +66,19 @@ const BasicInformationB = ({ formData, handleChange, handleBlur, handleSelectCha
           onBlur={handleBlur}
           borderColor={getBorderColor('cname')}
         />
-        <Input
-          borderRadius={['10', '7']}
-          size={['sm', 'md']}
-          placeholder='GSTIN'
-          name='gstin'
-          value={formData.gstin}
-          onChange={(e)=>handleGSTChange(e)}
-          onBlur={handleBlur}
-          borderColor={getBorderColor('gstin')}
-        />
+        <FormControl isInvalid={gstError !== ''}>
+          <Input
+            borderRadius={['10', '7']}
+            size={['sm', 'md']}
+            placeholder='GSTIN'
+            name='gstin'
+            value={formData.gstin}
+            onChange={(e) => handleGSTChange(e)}
+            onBlur={handleBlur}
+            borderColor={getBorderColor('gstin')}
+          />
+          {gstError && <FormErrorMessage>{gstError}</FormErrorMessage>}
+        </FormControl>
       </Flex>
       <Flex flexDir={'row'} w={'100%'} gap={4} flexWrap={['wrap', 'nowrap']}>
         <Input
@@ -124,7 +159,7 @@ const BasicInformationB = ({ formData, handleChange, handleBlur, handleSelectCha
         <Button colorScheme="teal" onClick={nextStage} size={['sm', 'md']}>Next</Button>
       </Flex>
     </VStack>
-  )
+  );
 };
 
 export default BasicInformationB;

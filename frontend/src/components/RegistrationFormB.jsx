@@ -156,6 +156,7 @@ const RegistrationFormB = () => {
             handleCheckboxChange={handleCheckboxChange}
             nextStage={nextStage}
             getBorderColor={getBorderColor}
+            setFormData={setFormData}
           />
         )}
         {stage === 2 && (
