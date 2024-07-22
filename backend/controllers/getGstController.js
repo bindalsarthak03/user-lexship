@@ -20,6 +20,7 @@ exports.getGstController = async (req, res) => {
         }
 
         const data = gstDetailsResponse.data;
+        console.log(data);
 
         const cleanedData = {
             principalPlaceOfBusinessFields: {
@@ -34,9 +35,9 @@ exports.getGstController = async (req, res) => {
                 }
             }
         };
+        console.log(cleanedData)
 
         res.status(200).send(cleanedData);
-
     } catch (error) {
         if (error.response) {
             console.error('Response error:', error.response.data);
