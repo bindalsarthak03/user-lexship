@@ -15,30 +15,27 @@ exports.getGstController = async (req, res) => {
             }
         });
 
-        if (!gstDetailsResponse.ok) {
-            if (response.status === 404) {
-              return res.status(404).json({ error: 'Invalid GSTIN' });
-            }
-            throw new Error('Failed to fetch data');
-          }
-          const data = await gstDetailsResponse.json();
-      
-          // Assuming your data structure is as follows, ensure no circular references:
-          const cleanedData = {
+        if (gstDetailsResponse.status === 404) {
+            return res.status(404).json({ error: 'Invalid GSTIN' });
+        }
+
+        const data = gstDetailsResponse.data;
+
+        const cleanedData = {
             principalPlaceOfBusinessFields: {
-              principalPlaceOfBusinessAddress: {
-                buildingName: data.principalPlaceOfBusinessFields.principalPlaceOfBusinessAddress.buildingName,
-                buildingNumber: data.principalPlaceOfBusinessFields.principalPlaceOfBusinessAddress.buildingNumber,
-                streetName: data.principalPlaceOfBusinessFields.principalPlaceOfBusinessAddress.streetName,
-                location: data.principalPlaceOfBusinessFields.principalPlaceOfBusinessAddress.location,
-                districtName: data.principalPlaceOfBusinessFields.principalPlaceOfBusinessAddress.districtName,
-                stateName: data.principalPlaceOfBusinessFields.principalPlaceOfBusinessAddress.stateName,
-                pincode: data.principalPlaceOfBusinessFields.principalPlaceOfBusinessAddress.pincode,
-              }
+                principalPlaceOfBusinessAddress: {
+                    buildingName: data.principalPlaceOfBusinessFields.principalPlaceOfBusinessAddress.buildingName,
+                    buildingNumber: data.principalPlaceOfBusinessFields.principalPlaceOfBusinessAddress.buildingNumber,
+                    streetName: data.principalPlaceOfBusinessFields.principalPlaceOfBusinessAddress.streetName,
+                    location: data.principalPlaceOfBusinessFields.principalPlaceOfBusinessAddress.location,
+                    districtName: data.principalPlaceOfBusinessFields.principalPlaceOfBusinessAddress.districtName,
+                    stateName: data.principalPlaceOfBusinessFields.principalPlaceOfBusinessAddress.stateName,
+                    pincode: data.principalPlaceOfBusinessFields.principalPlaceOfBusinessAddress.pincode,
+                }
             }
-          };
-      
-          res.status(200).send(cleanedData);
+        };
+
+        res.status(200).send(cleanedData);
 
     } catch (error) {
         if (error.response) {
