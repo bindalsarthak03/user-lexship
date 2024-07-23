@@ -50,7 +50,7 @@ const BusinessPresence = ({ prevStage, handleSubmit, selectedMarketplaces, selec
         <VStack spacing="4" >
             <Heading as="h4" size={['md', 'lg']} mb={10}>Business Presence</Heading>
             <Heading as='h4' size={['sm', 'md']}>MarketPlace</Heading>
-            <Box minWidth='60%' color={'black'} maxWidth="100%">
+            <Box minWidth='70%' color={'black'} maxWidth="100%">
                 <MultiSelect
                     className={name}
                     options={marketplaceOptions}
@@ -63,7 +63,7 @@ const BusinessPresence = ({ prevStage, handleSubmit, selectedMarketplaces, selec
                 />
             </Box>
             <Heading as='h4' size={['sm', 'md']}>Product Categories</Heading>
-            <Box minWidth="60%" maxWidth="100%" color={'black'}>
+            <Box minWidth="70%" maxWidth="100%" color={'black'}>
                 <MultiSelect
                     className={name}
                     options={categoryOptions}
