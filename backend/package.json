@@ -3,8 +3,7 @@
     "axios": "^1.7.2",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
-    "express": "^4.19.2",
-    "nodemon": "^3.1.4"
+    "express": "^4.19.2"
   },
   "name": "backend",
   "main": "app.js",
@@ -12,8 +11,10 @@
     "start": "nodemon app.js"
   },
   "version": "1.0.0",
-  "devDependencies": {},
   "author": "",
   "license": "ISC",
-  "description": ""
+  "description": "",
+  "devDependencies": {
+    "nodemon": "^3.1.4"
+  }
 }
