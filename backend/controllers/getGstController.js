@@ -20,7 +20,7 @@ exports.getGstController = async (req, res) => {
         }
 
         const data = gstDetailsResponse.data;
-        console.log(data);
+        if(process.env.NODE_ENV==='local') console.log("Data from apisetu :",data);
 
         const cleanedData = {
             legalNameOfBusiness : data.legalNameOfBusiness,
@@ -37,7 +37,7 @@ exports.getGstController = async (req, res) => {
             }
         };
 
-        console.log("cleaned data: ",cleanedData)
+        if(process.env.NODE_ENV==='local') console.log("Cleaned Data",cleanedData)
         res.status(200).send(cleanedData);
     } catch (error) {
         if (error.response) {
