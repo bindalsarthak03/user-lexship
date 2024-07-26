@@ -61,7 +61,7 @@ const BasicInformation = ({ formData, handleChange, handleBlur, nextStage, getBo
     </Flex>         
     <Flex width="100%">
       <Spacer />
-      <Button colorScheme="teal" onClick={nextStage} size={['sm', 'md']}>Next</Button>
+      <Button colorScheme="blue" onClick={nextStage} size={['sm', 'md']}>Next</Button>
     </Flex>
   </VStack>
 );

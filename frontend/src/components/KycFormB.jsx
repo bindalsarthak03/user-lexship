@@ -95,7 +95,7 @@ const KycFormB = () => {
                 <HStack spacing="8" justify="center" marginBottom="6">
                     <Text
                         fontWeight="bold"
-                        color={stage === 1 ? 'teal.400' : 'gray.500'}
+                        color={stage === 1 ? ' blue.400' : 'gray.500'}
                         fontSize={['sm', 'md']}
                         onClick={() => setStage(1)}
                         cursor={'pointer'}
@@ -106,7 +106,7 @@ const KycFormB = () => {
                     </Text>
                     <Text
                         fontWeight="bold"
-                        color={stage === 2 ? 'teal.400' : 'gray.500'}
+                        color={stage === 2 ? 'blue.400' : 'gray.500'}
                         fontSize={['sm', 'md']}
                         onClick={() => setStage(2)}
                         cursor={'pointer'}

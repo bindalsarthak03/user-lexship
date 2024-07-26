@@ -232,7 +232,7 @@ const KycDetails = ({ kycData, handleSelectChange, handleBlur, getBorderColor, h
       <Flex width="100%" mt={4}>
 
         <Spacer />
-        <Button colorScheme="teal" onClick={nextStage} size={['sm', 'md']}>Next</Button>
+        <Button colorScheme="blue" onClick={nextStage} size={['sm', 'md']}>Next</Button>
       </Flex>
     </VStack>
   )

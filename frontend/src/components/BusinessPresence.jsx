@@ -79,7 +79,7 @@ const BusinessPresence = ({ prevStage, handleSubmit, selectedMarketplaces, selec
             <Flex width="100%" mt={4}>
                 <Button colorScheme="gray" onClick={prevStage} size={['sm', 'md']}>Back</Button>
                 <Spacer />
-                <Button colorScheme="teal" onClick={handleSubmit} size={['sm', 'md']}>Submit</Button>
+                <Button colorScheme="blue" onClick={handleSubmit} size={['sm', 'md']}>Submit</Button>
             </Flex>
         </VStack>
     );
