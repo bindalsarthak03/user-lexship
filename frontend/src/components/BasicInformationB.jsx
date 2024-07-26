@@ -83,7 +83,7 @@ const BasicInformationB = ({ formData, handleChange, handleBlur, handleSelectCha
             onBlur={handleBlur}
             borderColor={getBorderColor('gstin')}
             transition="border-color 0.3s ease"
-            _focus={{ borderColor: 'teal.500' }}
+            _focus={{ borderColor: 'blue.500' }}
           />
           <Collapse in={isErrorVisible}>
             <FormErrorMessage>{gstError}</FormErrorMessage>
@@ -99,7 +99,7 @@ const BasicInformationB = ({ formData, handleChange, handleBlur, handleSelectCha
           onBlur={handleBlur}
           borderColor={getBorderColor('cname')}
           transition="border-color 0.3s ease"
-          _focus={{ borderColor: 'teal.500' }}
+          _focus={{ borderColor: 'blue.500' }}
         />
       </Flex>
       <Flex flexDir={'row'} w={'100%'} gap={4} flexWrap={['wrap', 'nowrap']}>
@@ -113,7 +113,7 @@ const BasicInformationB = ({ formData, handleChange, handleBlur, handleSelectCha
           onBlur={handleBlur}
           borderColor={getBorderColor('fname')}
           transition="border-color 0.3s ease"
-          _focus={{ borderColor: 'teal.500' }}
+          _focus={{ borderColor: 'blue.500' }}
         />
         <Input
           borderRadius={['10', '7']}
@@ -125,7 +125,7 @@ const BasicInformationB = ({ formData, handleChange, handleBlur, handleSelectCha
           onBlur={handleBlur}
           borderColor={getBorderColor('lname')}
           transition="border-color 0.3s ease"
-          _focus={{ borderColor: 'teal.500' }}
+          _focus={{ borderColor: 'blue.500' }}
         />
       </Flex>
       <Flex flexDir={'row'} w={'100%'} gap={4} flexWrap={['wrap', 'nowrap']}>
@@ -140,7 +140,7 @@ const BasicInformationB = ({ formData, handleChange, handleBlur, handleSelectCha
           onBlur={handleBlur}
           borderColor={getBorderColor('email')}
           transition="border-color 0.3s ease"
-          _focus={{ borderColor: 'teal.500' }}
+          _focus={{ borderColor: 'blue.500' }}
         />
         <Input
           borderRadius={['10', '7']}
@@ -153,7 +153,7 @@ const BasicInformationB = ({ formData, handleChange, handleBlur, handleSelectCha
           onBlur={handleBlur}
           borderColor={getBorderColor('mobile')}
           transition="border-color 0.3s ease"
-          _focus={{ borderColor: 'teal.500' }}
+          _focus={{ borderColor: 'blue.500' }}
         />
       </Flex>
       <Flex flexDir={'row'} w={'100%'} gap={4}>
@@ -167,7 +167,7 @@ const BasicInformationB = ({ formData, handleChange, handleBlur, handleSelectCha
           size={['sm', 'md']}
           borderColor={getBorderColor('ctype')}
           transition="border-color 0.3s ease"
-          _focus={{ borderColor: 'teal.500' }}
+          _focus={{ borderColor: 'blue.500' }}
         >
           <option value='Public Limited Company'>Public Limited Company</option>
           <option value='Private Limited Company'>Private Limited Company</option>
@@ -177,7 +177,7 @@ const BasicInformationB = ({ formData, handleChange, handleBlur, handleSelectCha
         </Select>
       </Flex>
       <Flex flexDir='column' width='100%' alignContent='flex-start'>
-        <CheckboxGroup colorScheme="green" onChange={handleCheckboxChange} value={formData.accountType} size={['sm', 'md']}>
+        <CheckboxGroup colorScheme="blue" onChange={handleCheckboxChange} value={formData.accountType} size={['sm', 'md']}>
           <HStack gap={5}>
             <Text fontSize={['sm', 'md']}>Account Type</Text>
             <Checkbox value="WSL">WSL</Checkbox>
@@ -190,7 +190,7 @@ const BasicInformationB = ({ formData, handleChange, handleBlur, handleSelectCha
         {isLoading ? (
           <Spinner size="lg" />
         ) : (
-          <Button colorScheme="teal" onClick={nextStage} size={['sm', 'md']}>Next</Button>
+          <Button colorScheme="blue" onClick={nextStage} size={['sm', 'md']}>Next</Button>
         )}
       </Flex>
     </VStack>

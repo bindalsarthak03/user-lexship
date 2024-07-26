@@ -7,6 +7,7 @@ const theme = extendTheme({
   styles: {
     global: {
       body: {
+
         transitionProperty: "all",
         transitionDuration: "normal",
       },

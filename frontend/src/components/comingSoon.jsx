@@ -66,7 +66,7 @@ const ComingSoon = () => {
               <Text>Seconds</Text>
             </Box>
           </HStack>
-          <Button colorScheme="teal" size="lg">
+          <Button colorScheme="blue" size="lg">
             Notify Me
           </Button>
           <HStack spacing={4}>

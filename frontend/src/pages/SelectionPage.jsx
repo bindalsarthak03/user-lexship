@@ -25,7 +25,7 @@ const SelectionPage = () => {
                     <Heading size={'lg'} textAlign={'left'}>Already a Customer?</Heading>
                     <Text color={'gray.500'} textAlign={'left'}>Login to access the best services!</Text>
 
-                    <Button colorScheme="teal" onClick={() => routeChange('login')} gap={2} >
+                    <Button colorScheme="blue" onClick={() => routeChange('login')} gap={2} >
                         Login
                     </Button>
                 </VStack>
@@ -47,7 +47,7 @@ const SelectionPage = () => {
                     <VStack alignItems={'left'}>
                         <Heading size={'lg'} textAlign={'left'}>Business</Heading>
                         <Text color={'gray.500'} textAlign={'left'}>Showcase your business to different parts of world.</Text>
-                        <Button colorScheme="teal" onClick={() => routeChange('business')}>Register</Button>
+                        <Button colorScheme="blue" onClick={() => routeChange('business')}>Register</Button>
                     </VStack>
                 </Flex>
                 <Flex border={'4px  solid'} borderRadius={20} alignItems={"center"} justifyContent={"space-around"} borderColor={(colorMode === 'dark' ? 'gray.700' : 'gray.200')} p={[6, 10]} gap={[2, 10]} flexDir={"row"} _hover={{ bgColor: (colorMode === 'dark' ? 'gray.700' : 'gray.200') }} flexWrap={['wrap', 'nowrap']}>
@@ -57,7 +57,7 @@ const SelectionPage = () => {
                     <VStack alignItems={'left'}>
                         <Heading size={'lg'} textAlign={'left'}>Retail</Heading>
                         <Text color={'gray.500'} textAlign={'left'}>Deliver gifts to any part of world to your loved ones.</Text>
-                        <Button colorScheme="teal" onClick={() => routeChange('retail')}> Register</Button>
+                        <Button colorScheme="blue" onClick={() => routeChange('retail')}> Register</Button>
                     </VStack>
                 </Flex>
             </Flex>

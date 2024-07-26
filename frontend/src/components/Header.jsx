@@ -46,13 +46,13 @@ const Header = () => {
         alignItems={'center'}
         gap={10}
       >
-        <Link _hover={{ textDecoration: 'underline', color: 'teal.400' }} href="/contact-us">
+        <Link _hover={{ textDecoration: 'underline', color: 'blue.400' }} href="/contact-us">
           Contact Us
         </Link>
-        <Link _hover={{ textDecoration: 'underline', color: 'teal.400' }} href="/about-us">
+        <Link _hover={{ textDecoration: 'underline', color: 'blue.400' }} href="/about-us">
           About Us
         </Link>
-        <Link _hover={{ textDecoration: 'underline', color: 'teal.400' }} href="/selection-type">
+        <Link _hover={{ textDecoration: 'underline', color: 'blue.400' }} href="/selection-type">
           SignUp/SignIn
         </Link>
         <Flex flexDir={'row'} gap={2}>

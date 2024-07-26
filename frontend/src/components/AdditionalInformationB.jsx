@@ -256,7 +256,7 @@ const AdditionalInformationB = ({ formData, handleChange, handleBlur, handleBill
             <Flex width="100%" mt={4}>
                 <Button colorScheme='gray' onClick={prevStage} size={['sm', 'md']}>Back</Button>
                 <Spacer />
-                <Button colorScheme="teal" onClick={onsubmit} size={['sm', 'md']}>Submit</Button>
+                <Button colorScheme="blue" onClick={onsubmit} size={['sm', 'md']}>Submit</Button>
             </Flex>
         </VStack>
     );
